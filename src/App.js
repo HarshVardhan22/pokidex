@@ -5,24 +5,22 @@ export default function App() {
   const [data, setData] = useState();
   const [limit, setLimit] = useState(10);
 
-  const [pokiResult,setPokiResult] = useState()
+  const [pokiResult, setPokiResult] = useState();
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon?offset=200&limit=${limit}`
   );
 
-  const compareByName = (a,b) => {
-    if(a.name>b.name)
-    return 1;
-    else if(a.name<b.name)
-    return -1;
+  const compareByName = (a, b) => {
+    if (a.name > b.name) return 1;
+    else if (a.name < b.name) return -1;
     return 0;
-  }
+  };
 
-  const sortByName = () => {
-      let tempArray = [...pokiResult]
-      tempArray.sort(compareByName)
-      setPokiResult(tempArray)
-  }
+  const handleSort = () => {
+    let tempArray = [...pokiResult];
+    tempArray.sort(compareByName);
+    setPokiResult(tempArray);
+  };
 
   const handleLimit = (e) => {
     setLimit(e.target.value);
@@ -40,7 +38,7 @@ export default function App() {
     const res = await fetch(url);
     const dataFetched = await res.json();
     setData(dataFetched);
-    setPokiResult(dataFetched.results)
+    setPokiResult(dataFetched.results);
   };
 
   const next = () => {
@@ -60,7 +58,7 @@ export default function App() {
       <div className="app__hero">
         <button onClick={prev}>Prev</button>
         <button onClick={next}>Next</button>
-        <button onClick={sortByName}>SortByName</button>
+        <button onClick={handleSort}>Sort By Name</button>
 
         <select onChange={handleLimit}>
           <option value="">Select number of pokemon</option>
@@ -76,10 +74,9 @@ export default function App() {
         })}
       </div>
       <footer>
-      <button onClick={prev}>Prev</button>
+        <button onClick={prev}>Prev</button>
         <button onClick={next}>Next</button>
       </footer>
-     
     </div>
   );
 }
