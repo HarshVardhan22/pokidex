@@ -68,3 +68,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### //card based structure
+
+### //card should have :
+
+// Name
+// Height
+// Weight
+// List of abilities
+
+//! show all cards in paginated form
+
+### //user should be able to select cards per page 10,20 or 50
+
+### //user should be shown next and prev link at
+
+### //both top and bottom of the page
+
+//page refresh should maintain sorting and page related data
+
+//User should be taken to the details page of that pokemon
+
+//and should have a link to go back to prev page
+
+// user should be able to search pokemon by name and abilities
+
+// user should be able to sort pokemon by name height and weight
