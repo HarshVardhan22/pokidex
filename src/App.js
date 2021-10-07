@@ -20,54 +20,78 @@ export default function App() {
   // eslint-disable-next-line
   const [pokemon, setPokemon] = useState();
   const history = useHistory();
+
+
+  //url used to fetch the pokemon
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon?offset=200&limit=${limit}`
   );
 
+  //function to fetch details of a single pokemon
   const fetchPokemon = async (inputURL) => {
     const res = await fetch(inputURL);
     const data = await res.json();
     return data;
   };
 
+
+  //using this function to useHistory to route toa diff page 
+  //and also transfer the details fetched from the fetchPokemon fuction
   const routeToDetails = async (e) => {
     console.log(e.target)
     const dataFetched = await fetchPokemon(e.target.id);
-
-    history.push({ pathname: "/details", state: dataFetched });
+  history.push({ pathname: "/details", state: dataFetched });
   };
 
+
+  //using this fn as a custom comparator function, that will be
+  //used to compare two pokemons by name property
   const compareByName = (a, b) => {
     if (a.name > b.name) return 1;
     else if (a.name < b.name) return -1;
     return 0;
   };
 
+
+  //this fn is used tohandle sorting
+  //later planning to make this a genric function to sort
+  //using other attributes as well like weight, height
   const handleSort = () => {
     let tempArray = [...pokiResult];
     tempArray.sort(compareByName);
     setPokiResult(tempArray);
   };
 
+
+  //this fn is taking input from user and then using the function applyLimit
   const handleLimit = (e) => {
     setLimit(e.target.value);
     applyLimit(e.target.value);
   };
 
+
+  //1. take "limit" as parameter
+  //2. find whether the current state of url has "limit="
+  //3.a if(yes) => extract the string before "limit="
+  //3.b add  "limit= {value recieved as paramater}" in the end of the extracted string
+
   const applyLimit = (limit) => {
     let indexOfLimit = url.indexOf("limit=");
     if (indexOfLimit !== -1) {
-      let str = url.substring(0, indexOfLimit);
-      console.log(str + `limit=${limit}`);
       setUrl(url.substring(0, indexOfLimit) + `limit=${limit}`);
     }
   };
 
+  //in pokeAPI searching by name has a different URL structure
+  //so we need to change the complete URL before making a fetch call
   const searchByName = async (e) => {
     e.preventDefault();
     setUrl(`https://pokeapi.co/api/v2/pokemon/${inputValue}`);
   };
 
+
+
+//fetching data from URL
   const fetchData = async () => {
     const res = await fetch(url);
     const dataFetched = await res.json();
@@ -76,6 +100,9 @@ export default function App() {
     if (dataFetched.results !== undefined) {
       setPokiResult(dataFetched.results);
     } else {
+      //if dataFetched.results is not there trhat means user has :
+      //1.searched a pokemon by name or 
+      //2. user has clicked
       history.push({ pathname: "/details", state: dataFetched });
     }
   };
@@ -86,7 +113,7 @@ export default function App() {
 
   const prev = () => {
     setUrl(data?.previous);
-  };
+    };
 
   useEffect(() => {
   
