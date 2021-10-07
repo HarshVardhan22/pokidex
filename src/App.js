@@ -121,14 +121,14 @@ export default function App() {
             <MenuItem value={50}>Fifty</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="outlined" size="small" sx={{ mt: 2 }} onClick={handleSort}>
+        <Button variant="contained" size="small" sx={{ mt: 2 }} onClick={handleSort}>
           Sort By Name
         </Button>
       </div>
       <div className="app__right">
         <div>
-          <Button variant="outlined" size="small" sx={{ mt: 2, mr:5 }} onClick={prev}>Prev</Button>
-          <Button variant="outlined" size="small" sx={{ mt: 2, ml:5 }} onClick={next}>Next</Button>
+          <Button variant="contained" size="small" sx={{ mt: 2, mr:5 }} onClick={prev}>Prev</Button>
+          <Button variant="contained" size="small" sx={{ mt: 2, ml:5 }} onClick={next}>Next</Button>
         </div>
 
         <div className="app__cardContainer" onClick = {routeToDetails} >
@@ -140,8 +140,8 @@ export default function App() {
           })}
         </div>
         <footer>
-          <Button variant="outlined" size="small" sx={{ mb: 2, mr:5 }} onClick={prev}>Prev</Button>
-          <Button variant="outlined" size="small" sx={{ mb: 2, ml:5 }} onClick={next}>Next</Button>
+          <Button variant="contained" size="small" sx={{ mb: 2, mr:5 }} onClick={prev}>Prev</Button>
+          <Button variant="contained" size="small" sx={{ mb: 2, ml:5 }} onClick={next}>Next</Button>
         </footer>
       </div>
 

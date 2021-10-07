@@ -26,25 +26,28 @@ const PokiCard = ({ id, url, routeToDetails }) => {
         className="pokiCard__img"
       />
 
+     
+     
       <h3>{pokiData?.name}</h3>
-
-      <p style={{fontSize:"18px"}}>
-        Height: {pokiData?.height} <br /> Weight: {pokiData?.weight}
-      </p>
-      {pokiData?.abilities.map((item, index) => {
-        return (
-          <span style={{fontSize:"14px"}} key={index}>
-            Ability {++index} : {item.ability.name}
-            <br />
-          </span>
-        );
-      })}
-
-      <CardActions>
-        <Button size="small" variant="outlined" id={id}>
+        <p style={{ fontSize: "18px" }}>
+          Height: {pokiData?.height} <br /> Weight: {pokiData?.weight}
+        </p>
+        {pokiData?.abilities.map((item, index) => {
+          return (
+            <span style={{ fontSize: "14px" }} key={index}>
+              Ability {++index} : {item.ability.name}
+              <br />
+            </span>
+          );
+        })}
+        <CardActions>
+        <Button size="small" variant="contained" id={id}>
           Learn More
         </Button>
       </CardActions>
+
+
+      
     </div>
   );
 };
