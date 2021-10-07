@@ -54,3 +54,21 @@ img{
     flex-direction: column;
     padding:25px
 }
+
+.details__subContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.details__moves{
+    width: 25vw;
+    max-height: 20vh;
+    overflow-y: scroll;
+}
+.details__ability{
+    width: 25vw;
+    max-height: 20vh;
+    overflow-y: scroll;
+}
