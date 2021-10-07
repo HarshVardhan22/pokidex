@@ -17,6 +17,7 @@ export default function App() {
   const [limit, setLimit] = useState(10);
   const [inputValue, setInputValue] = useState();
   const [pokiResult, setPokiResult] = useState();
+  // eslint-disable-next-line
   const [pokemon, setPokemon] = useState();
   const history = useHistory();
   const [url, setUrl] = useState(

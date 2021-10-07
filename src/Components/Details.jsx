@@ -6,7 +6,9 @@ import { Button } from "@mui/material";
 
 const Details = () => {
   const location = useLocation();
+  // eslint-disable-next-line
   const [pokemonSelected, setPokemonSelected] = useState(location.state);
+ // eslint-disable-next-line
   const [values, setValues] = useState(
     pokemonSelected.sprites
       ? Object.values(pokemonSelected.sprites).filter(
