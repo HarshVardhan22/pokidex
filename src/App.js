@@ -1,8 +1,17 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import Card from "./Components/Card";
+import PokiCard from "./Components/PokiCard";
 import Details from "./Components/Details";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 export default function App() {
   const [data, setData] = useState();
   const [limit, setLimit] = useState(10);
@@ -21,6 +30,7 @@ export default function App() {
   };
 
   const routeToDetails = async (e) => {
+    console.log(e.target)
     const dataFetched = await fetchPokemon(e.target.id);
 
     history.push({ pathname: "/details", state: dataFetched });
@@ -52,7 +62,8 @@ export default function App() {
     }
   };
 
-  const searchByName = async () => {
+  const searchByName = async (e) => {
+    e.preventDefault();
     setUrl(`https://pokeapi.co/api/v2/pokemon/${inputValue}`);
   };
 
@@ -68,8 +79,6 @@ export default function App() {
     }
   };
 
-  
-
   const next = () => {
     setUrl(data?.next);
   };
@@ -84,36 +93,57 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="app__hero">
-        <button onClick={prev}>Prev</button>
-        <button onClick={next}>Next</button>
-        <button onClick={handleSort}>Sort By Name</button>
+      <div className="app__navbar">
+ 
+        <form sx={{ minWidth: "300px", mt: 2 }} onSubmit={searchByName}>
+          <TextField
+            type="text"
+            size="small"
+            onChange={(e) => setInputValue(e.target.value)}
+            label="Enter name of pokemon"
+            variant="outlined"
+          />
+          <SearchOutlinedIcon sx={{mt: 1, ml:1 }}onClick={searchByName}/>
+        </form>
 
-        <input
-          type="text"
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter name of pokemon"
-          value={inputValue}
-        />
-        <button onClick={searchByName}>Search</button>
-
-        <select onChange={handleLimit}>
-          <option value="">Select number of pokemon</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-        </select>
+    
+        <FormControl sx={{ minWidth: "300px", mt: 2 }}>
+          <InputLabel size="small">Select number of pokemons</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            size="small"
+            label="Select number of pokemon"
+            onChange={handleLimit}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={50}>Fifty</MenuItem>
+          </Select>
+        </FormControl>
+        <Button variant="outlined" size="small" sx={{ mt: 2 }} onClick={handleSort}>
+          Sort By Name
+        </Button>
       </div>
+      <div className="app__right">
+        <div>
+          <Button variant="outlined" size="small" sx={{ mt: 2, mr:5 }} onClick={prev}>Prev</Button>
+          <Button variant="outlined" size="small" sx={{ mt: 2, ml:5 }} onClick={next}>Next</Button>
+        </div>
 
-      <div className="app__cardContainer" onClick={routeToDetails}>
-        {pokiResult?.map((item, index) => {
-          return <Card key={index} id={item.url} url={item.url} />;
-        })}
+        <div className="app__cardContainer" onClick = {routeToDetails} >
+          {pokiResult?.map((item, index) => {
+            return <div >
+            <PokiCard key={index} routeToDetails={routeToDetails}  id={item.url} url={item.url} />
+            </div>
+            
+          })}
+        </div>
+        <footer>
+          <Button variant="outlined" size="small" sx={{ mb: 2, mr:5 }} onClick={prev}>Prev</Button>
+          <Button variant="outlined" size="small" sx={{ mb: 2, ml:5 }} onClick={next}>Next</Button>
+        </footer>
       </div>
-      <footer>
-        <button onClick={prev}>Prev</button>
-        <button onClick={next}>Next</button>
-      </footer>
 
       {pokemon && <Details pokemon={pokemon} />}
     </div>
