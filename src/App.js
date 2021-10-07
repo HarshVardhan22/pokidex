@@ -106,7 +106,7 @@ export default function App() {
             label="Enter name of pokemon"
             variant="outlined"
           />
-          <SearchOutlinedIcon sx={{mt: 1, ml:1 }}onClick={searchByName}/>
+          <SearchOutlinedIcon sx={{mt: 1, ml:1 }} onClick={searchByName}/>
         </form>
 
     
