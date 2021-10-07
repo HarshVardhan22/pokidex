@@ -8,20 +8,20 @@ const Details = (pokemon) => {
     const [pokemonSelected,setPokemonSelected] = useState(location.state)
     console.log(location.state)
   const [images, setImages] = useState(pokemonSelected?.sprites);
-  const [keys, setKeys] = useState(pokemonSelected.sprites?Object.keys(pokemonSelected.sprites):[]);
+  const [values, setValues] = useState(pokemonSelected.sprites?Object.values(pokemonSelected.sprites).filter(item => typeof item === 'string'):[]);
   const [index, setIndex] = useState(0);
-
+    console.log(values)
   return (
     <div className="details">
       <button
         onClick={(e) => {
           setIndex(index + 1);
         }}
-        disabled={index === keys.length - 1 ? true : false}
+        disabled={index === values.length - 1 ? true : false}
       >
         Next Image
       </button>
-      <img src={images[keys[index]]} alt={pokemonSelected.name} />
+      <img src={values[index]} alt={pokemonSelected.name} />
       <button
         onClick={(e) => {
           setIndex(index - 1);

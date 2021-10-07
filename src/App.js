@@ -68,6 +68,8 @@ export default function App() {
     }
   };
 
+  
+
   const next = () => {
     setUrl(data?.next);
   };
