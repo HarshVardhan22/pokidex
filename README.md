@@ -1,13 +1,13 @@
 # Checkout this application :  https://pokidex-react.netlify.app/
 
-# I have made this application in React
+# I have made this application in React and I have also used Material UI
 
 # Core Features :
  1. Fetches results from "https://pokeapi.co/"
- 2. User can limit the nuumber of pokems to load per page (improves performance)
+ 2. User can limit the nuumber of pokemons to load per page (improves performance)
  3. User can search Pokemons by Name
  4. User can iterate between unique set of pokemons using "Next" and "Prev" buttons
- 5. User can click on "Know more" to get more details of the pokem and then user will be routed to a different page.
+ 5. User can click on "Learn more" on any pokemon card to get more details of the pokem and then user will be routed to a different page.
  6. User can sort Pokemons by Name
 
 # Notes:
