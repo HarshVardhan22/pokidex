@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import "./Card.css"
 
-const Card = ({url}) => {
+const Card = ({id,url}) => {
     const [pokiData,setPokiData] = useState()
 
     const fetchPokiData = async ()=> {
@@ -14,7 +14,7 @@ const Card = ({url}) => {
         fetchPokiData()
     },[url])
     return (
-        <div className="card">
+        <div className="card" id={id}>
             <div className="card__img">
                 <img src={pokiData?.sprites.front_default} alt="" />
             </div>

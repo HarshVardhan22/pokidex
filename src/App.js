@@ -8,11 +8,23 @@ export default function App() {
   const [limit, setLimit] = useState(10);
   const [inputValue, setInputValue] = useState();
   const [pokiResult, setPokiResult] = useState();
-  const[pokemon, setPokemon]  = useState();
-
+  const [pokemon, setPokemon] = useState();
+  const history = useHistory();
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon?offset=200&limit=${limit}`
   );
+
+  const fetchPokemon = async (inputURL) => {
+    const res = await fetch(inputURL);
+    const data = await res.json();
+    return data;
+  };
+
+  const routeToDetails = async (e) => {
+    const dataFetched = await fetchPokemon(e.target.id);
+
+    history.push({ pathname: "/details", state: dataFetched });
+  };
 
   const compareByName = (a, b) => {
     if (a.name > b.name) return 1;
@@ -48,13 +60,12 @@ export default function App() {
     const res = await fetch(url);
     const dataFetched = await res.json();
     setData(dataFetched);
-    
-    if(dataFetched.results!== undefined)
-   { setPokiResult(dataFetched.results);}
-    else
 
-  { console.log(dataFetched) 
-    setPokemon(dataFetched)}
+    if (dataFetched.results !== undefined) {
+      setPokiResult(dataFetched.results);
+    } else {
+      history.push({ pathname: "/details", state: dataFetched });
+    }
   };
 
   const next = () => {
@@ -92,9 +103,9 @@ export default function App() {
         </select>
       </div>
 
-      <div className="app__cardContainer">
+      <div className="app__cardContainer" onClick={routeToDetails}>
         {pokiResult?.map((item, index) => {
-          return <Card key={index} url={item.url} />;
+          return <Card key={index} id={item.url} url={item.url} />;
         })}
       </div>
       <footer>
@@ -102,9 +113,7 @@ export default function App() {
         <button onClick={next}>Next</button>
       </footer>
 
-    {pokemon && <Details pokemon={pokemon}/>
-      
-   }
+      {pokemon && <Details pokemon={pokemon} />}
     </div>
   );
 }
