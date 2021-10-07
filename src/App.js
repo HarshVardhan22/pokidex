@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import Card from "./Components/Card";
 import Details from "./Components/Details";
 export default function App() {

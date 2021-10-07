@@ -92,6 +92,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 //and should have a link to go back to prev page
 
-// user should be able to search pokemon by name and abilities
 
-// user should be able to sort pokemon by name height and weight
+## // user should be able to search pokemon by name and abilities
+
+### // user should be able to sort pokemon by name height and weight
