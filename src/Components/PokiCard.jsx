@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Card.css";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { fontSize } from "@mui/system";
-const PokiCard = ({ id, url, routeToDetails }) => {
+
+import { Button, CardActions } from "@mui/material";
+
+const PokiCard = ({ id, url }) => {
   const [pokiData, setPokiData] = useState();
 
   const fetchPokiData = async () => {
@@ -16,7 +13,9 @@ const PokiCard = ({ id, url, routeToDetails }) => {
     setPokiData(data);
   };
   useEffect(() => {
+    
     fetchPokiData();
+    // eslint-disable-next-line
   }, [url]);
   return (
     <div className="card">

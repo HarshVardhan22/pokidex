@@ -88,7 +88,9 @@ export default function App() {
   };
 
   useEffect(() => {
+  
     fetchData();
+    // eslint-disable-next-line
   }, [limit, url]);
 
   return (
